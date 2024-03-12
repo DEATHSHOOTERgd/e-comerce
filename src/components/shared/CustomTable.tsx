@@ -10,7 +10,7 @@ interface CustomTableProps{
 interface CellProperies{
     source:string;
     isImage?:boolean;
-    pipe?:(data:any)=>string;
+    fromatter?:(data:any)=>string;
     Component?:FC<{value:string}>
 }
 
@@ -31,7 +31,7 @@ const CustomTable = ({titles, cells, data}:CustomTableProps)=>{
                         >
                         {cells.map((cell, index)=>(
                             <TableCell key={index} component="th" scope="row">
-                                {cell.Component ? <cell.Component value={datum[cell.source]}/>:(cell.pipe ? cell.pipe(datum[cell.source]):datum[cell.source])    
+                                {cell.Component ? <cell.Component value={datum[cell.source]}/>:(cell.fromatter ? cell.fromatter(datum[cell.source]):datum[cell.source])    
                             }
                             </TableCell>
                         ))
